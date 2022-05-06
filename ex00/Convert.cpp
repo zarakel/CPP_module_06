@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Convert.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: juan <marvin@42.fr>                        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/06 13:41:03 by juan              #+#    #+#             */
+/*   Updated: 2022/05/06 13:47:57 by juan             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdlib.h>
 #include <limits>
 #include "Convert.hpp"
@@ -59,7 +71,6 @@ void Convert::convert_all( void )
 	b = static_cast<int>(d);
 	int i;	
 	i = 0;
-	std::cout << d << std::endl;
 	/*std::cout << "strlen: " << strlen(_val) << std::endl;
 	while (_val[i])
 	{
@@ -68,18 +79,22 @@ void Convert::convert_all( void )
 	}
 	std::cout << "val = " << this->_val << std::endl;*/
 	// gérer les overflow ? 	
-	if (c == b)
-	std::cout << "float: " << c << ".0f" <<  std::endl;
-	else 
-	std::cout << "float: " << c << "f" <<  std::endl;
-	std::cout << "double: " << d <<  std::endl;
 	if ( b > 32 && b < 127 )
 		std::cout << "char: '" << static_cast<char>(b) << "'" <<  std::endl;
 	else if (( b >= 0 && b <= 32) || b == 127)
-		std::cout << "non diplayable" << std::endl;
+		std::cout << "char: non displayable" << std::endl;
 	else if (b < 0 || b > 127)
-		std::cout << "impossible" << std::endl;
-}
+		std::cout << "char: impossible" << std::endl;
+	std::cout << "int : " << b << std::endl;
+	if ( c == b )
+	std::cout << "float: " << c << ".0f" <<  std::endl;
+	else 
+	std::cout << "float: " << c << "f" <<  std::endl;
+	if ( c == d )
+	std::cout << "double: " << d << ".0" << std::endl;
+	else
+	std::cout << "double: " << d << std::endl;
+	}
 
 Convert::~Convert( void )
 {
