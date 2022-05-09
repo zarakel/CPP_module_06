@@ -1,20 +1,22 @@
 #include "Convert.hpp"
 #include "Base.hpp"
-#include "A.hpp"
-#include "B.hpp"
-#include "C.hpp"
 
 int main(int argc, char **argv)
 {
 	uintptr_t t;
-	if (argc != 2)
-		return 0;
-	Convert a(argv[1]);
-	a.convert_all();
+	Convert a;
+	if (argc == 2)
+	{
+		Convert b(argv[1]);
+		b.convert_all();
+		a = b;
+	}
 	t = a.serialize(a.deserialize(100000000000000000));
 	std::cout << t << std::endl;
-	Base r;
-	r.generate();
-	r.Get_Char();
+	Base u;
+	Base *b;
+	b = u.generate();
+	u.identify(b);
+	u.identify(*b);
 	return 0 ;
 }
