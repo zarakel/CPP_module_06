@@ -6,7 +6,7 @@
 /*   By: juan <marvin@42.fr>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/06 13:41:03 by juan              #+#    #+#             */
-/*   Updated: 2022/05/06 13:47:57 by juan             ###   ########.fr       */
+/*   Updated: 2022/05/16 12:07:29 by jbuan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Convert & Convert::operator=( Convert const & cp )
 
 void Convert::convert_all( void )
 {
-	if (_temp == "nan" || _temp == "-inf" || _temp == "+inf" || _temp == "+inff" || _temp == "-inff" || _temp == "nanf")
+	if (_temp == "nan" || _temp == "-inf" || _temp == "+inf" || _temp == "inf" || _temp == "+inff" || _temp == "-inff" || _temp == "nanf")
 	{
 		std::cout << "char = impossible"<<  std::endl;	
 		std::cout << "int  = impossible"<<  std::endl;
@@ -52,11 +52,12 @@ void Convert::convert_all( void )
 			std::cout << "float = -inff"<<  std::endl;	
 			std::cout << "double = -inf"<<  std::endl;
 		}
-		else if (_temp == "+inf" || _temp == "+inff")
+		else if (_temp == "+inf" || _temp == "+inff" || _temp == "inf")
 		{
-			std::cout << "float = +inff"<<  std::endl;	
-			std::cout << "double = +inf"<<  std::endl;
+			std::cout << "float = inff"<<  std::endl;	
+			std::cout << "double = inf"<<  std::endl;
 		}
+		return ;
 	}	
 	double d;
 	if ( strlen(_val) == 1 )
@@ -85,7 +86,10 @@ void Convert::convert_all( void )
 		std::cout << "char: non displayable" << std::endl;
 	else if (b < 0 || b > 127)
 		std::cout << "char: impossible" << std::endl;
-	std::cout << "int : " << b << std::endl;
+	if ( b >= std::numeric_limits<int>::min() && b <= std::numeric_limits<int>::max() )
+		std::cout << "int : " << b << std::endl;
+	else
+		std::cout << "int : impossible" << std::endl;
 	if ( c == b )
 	std::cout << "float: " << c << ".0f" <<  std::endl;
 	else 
