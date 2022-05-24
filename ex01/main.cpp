@@ -1,13 +1,29 @@
 #include "Convert.hpp"
 
-int main(int argc, char **argv)
+uintptr_t serialize( Data * ptr )
 {
-	uintptr_t t;
-	if (argc != 2)
-		return 0;
-	Convert a(argv[1]);
-	a.convert_all();
-	t = a.serialize(a.deserialize(100000000000000000));
-	std::cout << t << std::endl;
+	std::cout << "--------------serialize---------------" << std::endl;
+	std::cout << ptr->i << std::endl;
+	std::cout << ptr << std::endl;
+	return( reinterpret_cast<uintptr_t>(ptr) );
+}
+
+Data * deserialize( uintptr_t raw )
+{
+	Data *a;
+	a = reinterpret_cast<Data *>(raw);
+	std::cout << "------------------------deserialize------------------" << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a->i << std::endl;
+	return (a);
+}
+
+int main()
+{
+	dd a;
+	a.i = 123;
+	std::cout << deserialize(serialize(&a)) << std::endl;
+	std::cout << "-----------Ce bon vieux main-----------" << std::endl;
+	std::cout << a.i << std::endl;
 	return 0 ;
 }

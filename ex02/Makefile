@@ -1,4 +1,4 @@
-CC = g++
+CC = c++
 
 RM = rm -f
 
