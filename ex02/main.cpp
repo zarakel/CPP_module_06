@@ -1,22 +1,16 @@
 #include "Convert.hpp"
 #include "Base.hpp"
+#include <unistd.h> 
 
-int main(int argc, char **argv)
+int main()
 {
-	uintptr_t t;
-	Convert a;
-	if (argc == 2)
-	{
-		Convert b(argv[1]);
-		b.convert_all();
-		a = b;
-	}
-	t = a.serialize(a.deserialize(100000000000000000));
-	std::cout << t << std::endl;
 	Base u;
 	Base *b;
+	Base *c;
 	b = u.generate();
+	usleep(500000);
+	c = u.generate();
 	u.identify(b);
-	u.identify(*b);
+	u.identify(*c);
 	return 0 ;
 }
